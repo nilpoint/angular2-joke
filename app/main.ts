@@ -5,11 +5,19 @@ import { BrowserModule } from '@angular/platform-browser';
 @Component({
   selector: 'joke',
   template: `
-  <h1>What did the cheese say when it looked in the mirror?</h1>
-  <p>Halloumi (hello me)</p>
+  <h1>{{setup}}</h1>
+  <p>{{punchline}}</p>
   `
 })
-class JokeComponent {}
+class JokeComponent {
+  setup: string;
+  punchline: string;
+
+  constructor() {
+    this.setup = "What did the cheese say when it looked in the mirror?";
+    this.punchline = "Halloumi (hello me)";
+  }
+}
 
 @NgModule({
   imports: [BrowserModule],
