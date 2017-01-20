@@ -2,3 +2,4 @@
 node_modules
 app/**/*.js
 *.js.map
+dist/

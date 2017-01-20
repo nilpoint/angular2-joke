@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "A Simple Joke App",
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "start": "tsc --outDir dist && concurrently \"tsc --outDir dist -w\" \"lite-server\" ",
     "lite": "lite-server",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w"
+    "tsc": "tsc --outDir dist",
+    "tsc:w": "tsc --outDir dist -w"
   },
   "keywords": [],
   "author": "",
