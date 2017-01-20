@@ -2,6 +2,22 @@ import { Component, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 
+class Joke {
+  setup: string;
+  punchline: string;
+  hide: boolean;
+
+  constructor(setup: string, punchline: string) {
+    this.setup = setup;
+    this.punchline = punchline;
+    this.hide = true;
+  }
+
+  toggle(){
+    this.hide = !this.hide;
+  }
+}
+
 @Component({
   selector: 'joke',
   template: `
@@ -25,41 +41,25 @@ class JokeComponent {
   <div class="card card-block" *ngFor="let joke of jokes">
     <h4 class="card-title">{{joke.setup}}</h4>
     <p class="card-text" [hidden]="joke.hide">{{joke.punchline}}</p>
-    <a class="btn btn-primary" (click)="toggle(joke)">Tell Me!</a>
+    <a class="btn btn-primary" (click)="joke.toggle()">Tell Me!</a>
   </div>
   `
 })
 class JokeListComponent {
-  jokes: Object[];
+  jokes: Joke[];
 
   constructor(){
     this.jokes = [
-      {
-        setup: "What did the cheese say when it looked in the mirror?",
-        punchline: "Hello-Me (Halloumi)",
-        hide: true
-      },
-      {
-        setup: "What kind of cheese do you use to disguise a small horse?",
-        punchline: "Mask-a-pony (Mascarpone)",
-        hide: true
-      },
-      {
-        setup: "A kid threw a lump of cheddar at me",
-        punchline: "I thought 'That's not very mature'",
-        hide: true
-      },
+      new Joke("What did the cheese say when it looked in the mirror?", "Hello-Me (Halloumi)"),
+      new Joke("What kind of cheese do you use to disguise a small horse?", "Mask-a-pony (Mascarpone)"),
+      new Joke("A kid threw a lump of cheddar at me", "I thought 'That's not very mature'")
     ];    
-  }
-
-  toggle(joke) {
-    joke.hide = !joke.hide;
   }
 }
 
 @NgModule({
   imports: [BrowserModule],
-  declarations: [JokeComponent, JokeListComponent],
+  declarations: [JokeListComponent],
   bootstrap: [JokeListComponent]
 })
 export class AppModule {}
