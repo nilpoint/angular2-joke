@@ -24,7 +24,7 @@ class JokeComponent {
   template:`
   <div class="card card-block" *ngFor="let joke of jokes">
     <h4 class="card-title">{{joke.setup}}</h4>
-    <p class="card-text">{{joke.punchline}}</p>
+    <p class="card-text" [hidden]="true">{{joke.punchline}}</p>
   </div>
   `
 })
