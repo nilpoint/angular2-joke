@@ -25,7 +25,7 @@ class JokeComponent {
   <div class="card card-block" *ngFor="let joke of jokes">
     <h4 class="card-title">{{joke.setup}}</h4>
     <p class="card-text" [hidden]="joke.hide">{{joke.punchline}}</p>
-    <a class="btn btn-primary" (click)="joke.hide=!joke.hide">Tell Me!</a>
+    <a class="btn btn-primary" (click)="toggle(joke)">Tell Me!</a>
   </div>
   `
 })
@@ -50,6 +50,10 @@ class JokeListComponent {
         hide: true
       },
     ];    
+  }
+
+  toggle(joke) {
+    joke.hide = !joke.hide;
   }
 }
 
