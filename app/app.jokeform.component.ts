@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+
+import { Joke } from './Joke';
 
 @Component({
   selector: 'joke-form',
@@ -16,9 +18,23 @@ import { Component } from '@angular/core';
             placeholder="Enter the punchline">
     </div>
     <button type="button"
-            class="btn btn-primary">Create
+            class="btn btn-primary"
+            (click)="createJoke()">Create
     </button>
   </div>
   `
 })
-export class JokeFormComponent{}
+export class JokeFormComponent{
+  /**
+   * An EventEmitter is a helper class which we can use to emit events when 
+   * something happens, other components can then bind and react to these 
+   * events.
+   */
+  @Output() jokeCreated = new EventEmitter<Joke>();
+
+  // output an event by calling the emit function on our jokeCreated property. 
+  // Whatever we pass to the emit function is what will be output by the property.
+  createJoke(){
+    this.jokeCreated.emit(new Joke("A setup", "A punchline"));
+  }
+}
