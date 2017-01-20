@@ -5,7 +5,7 @@ import { Joke } from './Joke';
 @Component({
   selector: 'joke-list',
   template:`
-  <joke *ngFor="let j of jokes"></joke>
+  <joke *ngFor="let j of jokes" [joke]="j"></joke>
   `
 })
 export class JokeListComponent {

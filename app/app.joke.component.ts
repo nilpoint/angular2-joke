@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Joke } from './Joke';
 
@@ -13,5 +13,6 @@ import { Joke } from './Joke';
   `
 })
 export class JokeComponent {
+  @Input('joke')
   joke: Joke;
 }
