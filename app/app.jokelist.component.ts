@@ -6,7 +6,7 @@ import { Joke } from './Joke';
   selector: 'joke-list',
   template:`
   <joke-form (jokeCreated)="addJoke($event)"></joke-form>
-  <joke *ngFor="let j of jokes" [joke]="j"></joke>
+  <joke *ngFor="let j of jokes" [joke]="j" (jokeRemoved)="removeJoke($event)"></joke>
   `
 })
 export class JokeListComponent {
@@ -22,5 +22,12 @@ export class JokeListComponent {
 
   addJoke(joke: Joke) {
     this.jokes.unshift(joke);
+  }
+
+  removeJoke(joke: Joke) {
+    const index = this.jokes.indexOf(joke);
+    if (index != -1) {
+      this.jokes.splice(index, 1);
+    }
   }
 }

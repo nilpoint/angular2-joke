@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Joke } from './Joke';
 
@@ -9,10 +9,17 @@ import { Joke } from './Joke';
     <h4 class="card-title">{{joke.setup}}</h4>
     <p class="card-text" [hidden]="joke.hide">{{joke.punchline}}</p>
     <a class="btn btn-primary" (click)="joke.toggle()">Tell Me!</a>
+    <a class="btn btn-danger" (click)="removeJoke(joke)">Delete</a>
   </div>
   `
 })
 export class JokeComponent {
   @Input('joke')
   joke: Joke;
+
+  @Output() jokeRemoved = new EventEmitter<Joke>();
+
+  removeJoke(joke: Joke){
+    this.jokeRemoved.emit(joke);
+  }
 }
